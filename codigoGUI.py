@@ -8,6 +8,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
+from Alarma import Alarma
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -24,7 +25,8 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_Dialog(object):
-	def setupUi(self, Dialog):
+
+    def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
         Dialog.resize(800, 480)
         self.frame = QtGui.QFrame(Dialog)
@@ -52,10 +54,8 @@ class Ui_Dialog(object):
         self.alarmas.setGeometry(QtCore.QRect(360, 50, 361, 161))
         self.alarmas.setWidgetResizable(True)
         self.alarmas.setObjectName(_fromUtf8("alarmas"))
-        self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 359, 159))
-        self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
-        self.alarmas.setWidget(self.scrollAreaWidgetContents)
+        self.caja = QtGui.QTextEdit(self.frame)
+        self.alarmas.setWidget(self.caja)
         self.label = QtGui.QLabel(self.frame)
         self.label.setGeometry(QtCore.QRect(360, 20, 121, 21))
         font = QtGui.QFont()
@@ -463,7 +463,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
-		
+
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(_translate("Dialog", "Dialog", None))
         self.ON.setText(_translate("Dialog", "ON", None))
@@ -486,14 +486,28 @@ class Ui_Dialog(object):
         self.label_13.setText(_translate("Dialog", "150%", None))
         self.audioIN.setText(_translate("Dialog", "AUDIO IN", None))
         self.audioDEMOD.setText(_translate("Dialog", "AUDIO DEMOD", None))
-		
-	def encendido():
-			ui.ON.setStyleSheet("background-color: green")
-			return None
-		
-	def apagado():
-			ui.ON.setStyleSheet("background-color: gray")
-			return None
+
+    def colores(self):
+        if(True):
+                print("")
+        if(True):
+                print("")
+        if(True):
+                print("")
+        if(True):
+                print("")
+
+    def encendido(self):
+        ui.OFF.setStyleSheet("background-color: 141414")
+        ui.ON.setStyleSheet("background-color: green")
+
+    def apagado(self):
+        ui.ON.setStyleSheet("background-color: 141414")
+        ui.OFF.setStyleSheet("background-color: red")
+
+    def encenderAlarma(self):
+        ui.caja.setText(alarm.cargarAlarmas())
+
 
 if __name__ == "__main__":
     import sys
@@ -501,13 +515,19 @@ if __name__ == "__main__":
     Dialog = QtGui.QDialog()
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
-    
+
+    #parametros de inicio
+    alarm= Alarma()
+    ui.encenderAlarma()
+
     #boton ON inicia potencia del transmisor
     ui.ON.clicked.connect(ui.encendido)
     #boton OFF apaga el transmisor
     ui.OFF.clicked.connect(ui.apagado)
-    
+
     Dialog.show()
     
     sys.exit(app.exec_())
+
+
 
