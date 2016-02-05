@@ -9,6 +9,7 @@
 
 from PyQt4 import QtCore, QtGui
 from Alarma import Alarma
+from Pin import Pin
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -54,8 +55,10 @@ class Ui_Dialog(object):
         self.alarmas.setGeometry(QtCore.QRect(360, 50, 361, 161))
         self.alarmas.setWidgetResizable(True)
         self.alarmas.setObjectName(_fromUtf8("alarmas"))
+
         self.caja = QtGui.QTextEdit(self.frame)
         self.alarmas.setWidget(self.caja)
+
         self.label = QtGui.QLabel(self.frame)
         self.label.setGeometry(QtCore.QRect(360, 20, 121, 21))
         font = QtGui.QFont()
@@ -506,8 +509,7 @@ class Ui_Dialog(object):
         ui.OFF.setStyleSheet("background-color: red")
 
     def encenderAlarma(self):
-        ui.caja.setText(alarm.cargarAlarmas())
-
+        ui.caja.setText("holi")
 
 if __name__ == "__main__":
     import sys
